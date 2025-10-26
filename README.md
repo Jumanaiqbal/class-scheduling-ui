@@ -1,71 +1,121 @@
 # Class Scheduling UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React dashboard for managing driving school class schedules, instructors, students, and reports.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Dashboard with live stats and charts
+- CSV upload for bulk scheduling
+- Configurable system settings
+- Reports and analytics
+- Responsive Material-UI design
+- Routing for dashboard, upload, reports, and config
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js (v18+ recommended)
+- npm (v9+ recommended)
+- Backend API running at `http://localhost:5001` (see proxy setup)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### 1. Clone the repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+git clone https://github.com/Jumanaiqbal/class-scheduling-ui.git
+cd class-scheduling-ui
+```
 
-### `npm run build`
+### 2. Install dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Configure API Proxy
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The frontend expects the backend API at `http://localhost:5001`. The proxy is set in `package.json`:
 
-### `npm run eject`
+```json
+"proxy": "http://localhost:5001"
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If your backend runs elsewhere, update this value.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. Start the development server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sh
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The app runs at `http://localhost:3000`
+- API requests are proxied to the backend
 
-## Learn More
+### 5. Available Pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `/` — Dashboard (stats, charts, quick actions)
+- `/upload` — CSV upload for class schedules
+- `/reports` — View and filter class reports
+- `/config` — System configuration (settings)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+public/
+	index.html, favicon.ico, ...
+src/
+	components/
+		dashboard/      # StatsChart, cards, dashboard UI
+		config/         # ConfigForm, config UI
+		reports/        # ReportTable, filters
+		upload/         # CSVUploader, upload results
+		common/         # Layout, Navigation, Loading
+	contexts/         # AppContext
+	hooks/            # useApi, useNotification
+	pages/            # Dashboard, Upload, Reports, Config
+	services/         # api.js, axiosConfig.js
+	themes/           # MUI theme, palette
+	utils/            # constants, helpers
+	App.js, index.js, ...
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Environment Variables
 
-### Analyzing the Bundle Size
+- By default, uses the proxy in `package.json`.
+- For custom API URLs, set `REACT_APP_API_BASE_URL` in a `.env` file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Backend API
 
-### Making a Progressive Web App
+- Ensure the backend is running and accessible at the proxy URL.
+- Endpoints used:
+  - `/api/dashboard/summary` — Dashboard summary stats
+  - `/api/dashboard/stats?days=30` — Chart stats
+  - `/api/registrations/upload` — CSV upload
+  - `/api/reports/classes` — Reports
+  - `/api/config` — System config
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Customization
 
-### Advanced Configuration
+- Update theme in `src/themes/`
+- Add new pages/components in `src/pages/` and `src/components/`
+- Extend API helpers in `src/services/api.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Scripts
 
-### Deployment
+- `npm start` — Start development server
+- `npm run build` — Build for production
+- `npm test` — Run tests (if available)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Troubleshooting
 
-### `npm run build` fails to minify
+- **API errors:** Check backend is running and proxy is correct.
+- **CORS issues:** Use the proxy or configure CORS on backend.
+- **Port conflicts:** Change frontend or backend port in config.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# class-scheduling-ui
+## License
+
+MIT
+
+## Author
+
+Jumanaiqbal

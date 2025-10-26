@@ -6,17 +6,17 @@ import { useApi } from '../hooks/useApi';
 import { getUIConfig, updateConfig } from '../services/api';
 
 const Config = () => {
-  const { 
-    data: configData, 
-    loading: loadingConfig, 
+  const {
+    data: configData,
+    loading: loadingConfig,
     error: configError,
-    execute: fetchConfig 
-  } = useApi(getUIConfig, true); // Set to true to fetch on mount
+    execute: fetchConfig,
+  } = useApi(getUIConfig, true);
 
-  const { 
-    execute: updateConfigData, 
+  const {
+    execute: updateConfigData,
     loading: savingConfig,
-    error: saveError 
+    error: saveError,
   } = useApi(updateConfig, false);
 
   const handleSave = async (config) => {
@@ -63,7 +63,7 @@ const Config = () => {
         {/* Configuration Form */}
         <Grid item xs={12} lg={8}>
           <ConfigForm
-            config={configData?.data || {}}
+            config={configData || {}}
             onSave={handleSave}
             onReset={handleReset}
             loading={loadingConfig || savingConfig}
@@ -82,7 +82,7 @@ const Config = () => {
               <Typography variant="h6" gutterBottom fontWeight={600}>
                 💡 Configuration Tips
               </Typography>
-              
+
               <Box display="flex" flexDirection="column" gap={2} mt={2}>
                 <Box>
                   <Typography variant="body2" fontWeight={500}>

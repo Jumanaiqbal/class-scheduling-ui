@@ -1,30 +1,57 @@
 import { createTheme } from '@mui/material/styles';
 
-export const appTheme = createTheme({
+const themePalette = {
+  primary: '#00838A',
+  primaryLight: '#E0F2F2',
+  secondary: '#EA4335',
+  accent: '#00838A',
+  backgroundLight: '#F8F9FA',
+  backgroundDark: '#1F2023',
+  surfaceLight: '#FFFFFF',
+  surfaceDark: '#292A2D',
+  textPrimaryLight: '#202124',
+  textPrimaryDark: '#E8EAED',
+  textSecondaryLight: '#5F6368',
+  textSecondaryDark: '#969BA1',
+  borderLight: '#DADCE0',
+  borderDark: '#3C4043',
+};
+const baseTheme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
-      light: '#42a5f5',
-      dark: '#1565c0',
+      main: themePalette.primary,
+      light: themePalette.primaryLight,
+      dark: themePalette.primary,
     },
     secondary: {
-      main: '#00bcd4',
-      light: '#33c9dc',
-      dark: '#008394',
+      main: themePalette.secondary,
+      light: themePalette.primaryLight,
+      dark: themePalette.primary,
+    },
+    accent: {
+      main: themePalette.accent,
     },
     background: {
-      default: '#f5f7fa',
-      paper: '#ffffff',
+      default: themePalette.backgroundLight,
+      paper: themePalette.surfaceLight,
     },
     text: {
-      primary: '#2c3e50',
-      secondary: '#546e7a',
+      primary: themePalette.textPrimaryLight,
+      secondary: themePalette.textSecondaryLight,
     },
     success: {
       main: '#4caf50',
     },
     error: {
-      main: '#f44336',
+      main: themePalette.secondary,
+    },
+    border: {
+      light: themePalette.borderLight,
+      dark: themePalette.borderDark,
+    },
+    surface: {
+      light: themePalette.surfaceLight,
+      dark: themePalette.surfaceDark,
     },
   },
   typography: {
@@ -58,3 +85,6 @@ export const appTheme = createTheme({
     },
   },
 });
+
+baseTheme.mPalette = themePalette;
+export const appTheme = baseTheme;
